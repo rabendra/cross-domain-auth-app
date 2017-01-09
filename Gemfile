@@ -12,6 +12,7 @@ gem 'devise', '~> 4.2'
 
 # Background processing
 gem 'sidekiq', '~> 4.2'
+gem 'sidekiq-scheduler', '~> 2.0'
 
 # Assets
 gem 'sass-rails', '~> 5.0'

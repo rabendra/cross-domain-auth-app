@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-
   # Sidekiq Monitoring
   require 'sidekiq/web'
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|
@@ -11,5 +10,6 @@ Rails.application.routes.draw do
    end if Rails.env.production?
   mount Sidekiq::Web => '/sidekiq'
 
+  # TODO: Remove once we have some routing in place
   root to: 'home#index'
 end

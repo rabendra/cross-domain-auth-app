@@ -7,3 +7,4 @@ production:
 :queues:
   - default
   - [mailers, 10]
+:scheduler:
