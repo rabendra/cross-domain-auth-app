@@ -22,3 +22,6 @@
 
 # rspec failed examples
 spec/examples.txt
+
+# ENV
+.env
