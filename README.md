@@ -7,8 +7,17 @@ Provides the API to manage users, listings, events and more for the mobile app.
 
 ## Installation
 
+
+### Requirements
 * Rails 5
 * Postgres 9.5+
 * Redis
 * ImageMagick
 * Mailcatcher
+
+### Setup
+
+```shell
+$> cp env.sample .env
+$> bundle exec rake db:setup
+````
