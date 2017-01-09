@@ -1,6 +1,6 @@
 geocoder_cache = nil
 if Rails.env.production?
-  geocoder_cache = Redis.new(ENV['REDIS_URL'])
+  geocoder_cache = Redis.new(url: ENV['REDIS_URL'])
 end
 
 Geocoder.configure(
