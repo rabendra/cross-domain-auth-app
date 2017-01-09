@@ -1,24 +1,14 @@
-# README
+# Equus Hub API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[ ![Codeship Status for Touchtap/equusmatch-backend](https://app.codeship.com/projects/2fef84b0-a466-0134-897a-6a0a51f3bf6e/status?branch=master)](https://app.codeship.com/projects/190529)
 
-Things you may want to cover:
+Provides the API to manage users, listings, events and more for the mobile app.
 
-* Ruby version
 
-* System dependencies
+## Installation
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Rails 5
+* Postgres 9.5+
+* Redis
+* ImageMagick
+* Mailcatcher
