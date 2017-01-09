@@ -57,9 +57,18 @@ Rails.application.configure do
   config.active_job.queue_name_prefix = "equus-hub_#{Rails.env}"
 
   config.action_mailer.perform_caching = false
-
   config.action_mailer.default_url_options = {
     host: ENV['ACTION_MAILER_HOST']
+  }
+
+  config.action_mailer.smtp_settings = {
+    :port           => '25', # or 2525
+    :address        => ENV['POSTMARK_SMTP_SERVER'],
+    :user_name      => ENV['POSTMARK_API_TOKEN'],
+    :password       => ENV['POSTMARK_API_TOKEN'],
+    :domain         => ENV['ACTION_MAILER_DOMAIN'],
+    :authentication => :cram_md5, # or :plain for plain-text authentication
+    :enable_starttls_auto => true, # or false for unencrypted connection
   }
 
   # Ignore bad email addresses and do not raise email delivery errors.
