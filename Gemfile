@@ -10,6 +10,9 @@ gem 'puma', '~> 3.0'
 # Authentication and access control
 gem 'devise', '~> 4.2'
 
+# Background processing
+gem 'sidekiq', '~> 4.2'
+
 # Assets
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
