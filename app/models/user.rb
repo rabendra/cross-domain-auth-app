@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :horses, inverse_of: :user, dependent: :destroy
   has_one :profile, inverse_of: :user, dependent: :destroy
   
   # Override to send all email notifications via ActiveJob
