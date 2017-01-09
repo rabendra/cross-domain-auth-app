@@ -17,6 +17,9 @@ gem 'sidekiq-scheduler', '~> 2.0'
 # Monitoring
 gem 'newrelic_rpm', '~> 3.17.2'
 
+# Geocoding
+gem 'geocoder', '~> 1.4'
+
 # Assets
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
