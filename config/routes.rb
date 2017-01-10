@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     devise_scope :user do
-      post '/login' => 'sessions#create', as: :user_session
+      resources :sessions, only: :create
     end
   end
 
