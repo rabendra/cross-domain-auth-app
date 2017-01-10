@@ -15,12 +15,9 @@ class API::SessionsController < Devise::SessionsController
     end
   end
 
+  private
+
   def sign_in_params
-    params
-        .require(:user)
-        .permit(
-            :email,
-            :password
-        )
+    params.permit(:email, :password)
   end
 end
