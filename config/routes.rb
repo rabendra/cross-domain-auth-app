@@ -10,6 +10,14 @@ Rails.application.routes.draw do
    end if Rails.env.production?
   mount Sidekiq::Web => '/sidekiq'
 
+  namespace :api do
+    devise_scope :user do
+      post '/registrations' => 'registrations#create', as: :user_registration 
+      post '/login' => 'sessions#create', as: :user_session      
+      post '/authentication' => 'registrations#authentication', as: :user_authentication    
+    end
+    resources :horses 
+  end
   # TODO: Remove once we have some routing in place
   root to: 'home#index'
 end
