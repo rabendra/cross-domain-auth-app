@@ -17,8 +17,11 @@ gem 'sidekiq-scheduler', '~> 2.0'
 # Monitoring
 gem 'newrelic_rpm', '~> 3.17.2'
 
-# Geocoding
+# Geocoding & uploads
 gem 'geocoder', '~> 1.4'
+gem 'carrierwave', '~> 1.0'
+gem 'fog', '~> 1.38'
+gem 'mini_magick', '~> 4.6'
 
 # Assets
 gem 'sass-rails', '~> 5.0'
