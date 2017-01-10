@@ -4,12 +4,12 @@
 
 Provides the API to manage users, listings, events and more for the mobile app.
 
+Available at [http://api.equushub.com](http://api.equushub.com).
 
 ## Installation
 
-
 ### Requirements
-* Rails 5
+* Ruby 2.3
 * Postgres 9.5+
 * Redis
 * ImageMagick
@@ -18,6 +18,11 @@ Provides the API to manage users, listings, events and more for the mobile app.
 ### Setup
 
 ```shell
-$> cp env.sample .env
+$> cp env.sample .env # make any necessary changes to credentials
 $> bundle exec rake db:setup
-````
+```
+
+## Deployment
+ Deployment is handled automatically via [CodeShip](www.codeship.com) after any changes are pushed to the `master` branch and the test suite passes.
+
+ The app is hosted on Heroku with DNS managed on GoDaddy.
