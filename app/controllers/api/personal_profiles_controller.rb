@@ -1,6 +1,7 @@
 module API
   class PersonalProfilesController < BaseController
     def update
+      profile.attributes = permitted_params
       profile.save!
 
       render json: profile, serializer: PersonalProfileSerializer
@@ -9,11 +10,14 @@ module API
     private
 
     def profile
-      @profile ||= build_profile
+      @profile ||= find_profile || build_profile
+    end
+
+    def find_profile
+      current_user.profile
     end
 
     def build_profile
-      # user.profile.where(type: PersonalProfile.name).first_or_initialize
       PersonalProfile.new(permitted_params) do |p|
         p.user = current_user
         p.address = Address.new(address_attributes.merge(addressable: p))

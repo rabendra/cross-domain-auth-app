@@ -33,6 +33,33 @@ RSpec.describe API::PersonalProfilesController, type: :controller do
 
   context 'for an existing profile' do
     let(:user) { create(:user, :personal) }
-    let(:profile) { user.profile }
+    let!(:profile) { user.profile }
+
+    describe 'PUT update' do
+      it 'returns a 200' do
+        send_request
+
+        expect(response.code).to eq('200')
+      end
+
+      it 'renders the profile JSON' do
+        send_request
+
+        json = JSON.parse(response.body).with_indifferent_access
+        serialized_profile = attributes_from(PersonalProfileSerializer.new(profile.reload))
+
+        expect(json).to eq(serialized_profile)
+      end
+
+      it 'updates the first name' do
+        expect { send_request }.to change { profile.reload.first_name }.to('Walt')
+      end
+
+      def send_request
+        set_http_headers(user)
+
+        put :update, params: { user_id: user.id, first_name: 'Walt' }
+      end
+    end
   end
 end
