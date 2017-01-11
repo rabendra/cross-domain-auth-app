@@ -12,16 +12,23 @@ Rails.application.routes.draw do
 
   namespace :api, path: '', defaults: { format: :json } do
     devise_scope :user do
+
+      # Login
       resources :sessions, only: :create
 
+      # Registration
+      # TODO: Build out
+
+      # Horses
       resources :horses, except: [:new, :edit] do
         namespace :horses, path: '' do
           resource :photo, path: :photo, only: :update
         end
       end
 
+      # Profile Management
       resource :personal_profile, path: :profile, only: :update
-
+      resource :business_profile, path: :business, only: :update
       resource :avatar, only: :update
     end
   end
