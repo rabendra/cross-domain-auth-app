@@ -21,8 +21,14 @@
 # Ignore Byebug command history file.
 .byebug_history
 
+# Rubymine
+.idea
+
 # rspec failed examples
 spec/examples.txt
 
 # ENV
 .env
+
+# carrierwave
+public/uploads

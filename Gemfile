@@ -34,6 +34,10 @@ gem 'turbolinks', '~> 5'
 # API Builder
 gem 'jbuilder', '~> 2.5'
 
+# API Functionality
+gem 'jwt', '~> 1.5.2'
+gem 'active_model_serializers'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -46,6 +50,8 @@ end
 
 group :test do
   gem 'shoulda-matchers', '~> 3.1'
+  gem 'webmock', '~> 2.1'
+  gem 'vcr', '~> 3.0'
 end
 
 group :development do

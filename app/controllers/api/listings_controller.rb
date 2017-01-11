@@ -1,19 +1,15 @@
-class Api::ListingsController < Api::BaseController
+class API::ListingsController < Api::BaseController
 
   before_action :get_category
 
   def create
-    begin
-      listing = @current_user.listings.new(listing_params)
-      listing.tag_list = params[:tags] if !params[:tags].blank?    
-      listing.categories_listings.new( category_id: get_category.id )      
-      if listing.save
-        retrun_listing_response listing
-      else
-        return_error listing.errors.messages
-      end
-    rescue Exception => e
-      return_error "#{e.class}"
+    listing = @current_user.listings.new(listing_params)
+    listing.tag_list = params[:tags] if !params[:tags].blank?    
+    listing.categories_listings.new( category_id: get_category.id )      
+    if listing.save
+      retrun_listing_response listing
+    else
+      return_error listing.errors.messages
     end
   end
 

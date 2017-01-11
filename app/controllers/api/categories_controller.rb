@@ -1,14 +1,10 @@
 class Api::CategoriesController < Api::BaseController
   def create
-    begin
-      category = @current_user.categories.create(category_params)
-      if category.valid?
-        retrun_category_response category
-      else
-        return_error category.errors.messages
-      end
-    rescue Exception => e
-      return_error "#{e.class}"
+    category = @current_user.categories.create(category_params)
+    if category.valid?
+      retrun_category_response category
+    else
+      return_error category.errors.messages
     end
   end
 
