@@ -19,9 +19,8 @@ class User < ApplicationRecord
   end
 
   def format_phone_number
-    if self.phone_number
+    return if phone_number.blank? || !phone_number_changed?
       self.phone_number = self.phone_number.gsub(/[^0-9]/, '')
-    end
   end
 
   def token_payload
