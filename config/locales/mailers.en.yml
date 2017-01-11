@@ -1,0 +1,4 @@
+en:
+  user_invitation_mailer:
+    invite:
+      subject: "%{name} has invited you to join EquusHub!"
