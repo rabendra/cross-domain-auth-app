@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       resource :personal_profile, path: :profile, only: :update
       resource :business_profile, path: :business, only: :update
       resource :avatar, only: :update
+      resources :contacts, only: :create
     end
   end
 
