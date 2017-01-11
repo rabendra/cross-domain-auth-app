@@ -1,6 +1,10 @@
 module API
   class BusinessProfilesController < BaseController
     def update
+      unless profile.is_a?(BusinessProfile)
+        raise ArgumentError, 'Cannot switch from personal to business after setup'
+      end
+
       profile.attributes = permitted_params
       profile.save!
 

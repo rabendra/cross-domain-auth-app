@@ -36,34 +36,47 @@ RSpec.describe API::PersonalProfilesController, type: :controller do
   end
 
   context 'for an existing profile' do
-    let(:user) { create(:user, :personal) }
-    let!(:profile) { user.profile }
+    context 'of the PERSONAL type' do
+      let(:user) { create(:user, :personal) }
+      let!(:profile) { user.profile }
 
-    describe 'PUT update' do
-      it 'returns a 200' do
+      describe 'PUT update' do
+        it 'returns a 200' do
+          send_request
+
+          expect(response.code).to eq('200')
+        end
+
+        it 'renders the profile JSON' do
+          send_request
+
+          json = JSON.parse(response.body).with_indifferent_access
+          serialized_profile = attributes_from(PersonalProfileSerializer.new(profile.reload))
+
+          expect(json).to eq(serialized_profile)
+        end
+
+        it 'updates the first name' do
+          expect { send_request }.to change { profile.reload.first_name }.to('Walt')
+        end
+      end
+    end
+
+    context 'of the BUSINESS type' do
+      let(:user) { create(:user, :business) }
+      let!(:profile) { user.profile }
+
+      it 'returns a 400' do
         send_request
 
-        expect(response.code).to eq('200')
+        expect(response.code).to eq('400')
       end
+    end
 
-      it 'renders the profile JSON' do
-        send_request
+    def send_request
+      set_http_headers(user)
 
-        json = JSON.parse(response.body).with_indifferent_access
-        serialized_profile = attributes_from(PersonalProfileSerializer.new(profile.reload))
-
-        expect(json).to eq(serialized_profile)
-      end
-
-      it 'updates the first name' do
-        expect { send_request }.to change { profile.reload.first_name }.to('Walt')
-      end
-
-      def send_request
-        set_http_headers(user)
-
-        put :update, params: { user_id: user.id, first_name: 'Walt' }
-      end
+      put :update, params: { user_id: user.id, first_name: 'Walt' }
     end
   end
 end

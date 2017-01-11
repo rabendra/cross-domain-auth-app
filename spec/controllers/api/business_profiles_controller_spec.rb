@@ -38,34 +38,47 @@ RSpec.describe API::BusinessProfilesController, type: :controller do
   end
 
   context 'for an existing profile' do
-    let(:user) { create(:user, :business) }
-    let!(:profile) { user.profile }
+    context 'of the PERSONAL type' do
+      let(:user) { create(:user, :personal) }
+      let!(:profile) { user.profile }
 
-    describe 'PUT update' do
-      it 'returns a 200' do
+      it 'returns a 400' do
         send_request
 
-        expect(response.code).to eq('200')
+        expect(response.code).to eq('400')
       end
+    end
 
-      it 'renders the profile JSON' do
-        send_request
+    context 'of the BUSINESS type' do
+      let(:user) { create(:user, :business) }
+      let!(:profile) { user.profile }
 
-        json = JSON.parse(response.body).with_indifferent_access
-        serialized_profile = attributes_from(BusinessProfileSerializer.new(profile.reload))
+      describe 'PUT update' do
+        it 'returns a 200' do
+          send_request
 
-        expect(json).to eq(serialized_profile)
+          expect(response.code).to eq('200')
+        end
+
+        it 'renders the profile JSON' do
+          send_request
+
+          json = JSON.parse(response.body).with_indifferent_access
+          serialized_profile = attributes_from(BusinessProfileSerializer.new(profile.reload))
+
+          expect(json).to eq(serialized_profile)
+        end
+
+        it 'updates the business name' do
+          expect { send_request }.to change { profile.reload.first_name }.to('Walt')
+        end
       end
+    end
 
-      it 'updates the business name' do
-        expect { send_request }.to change { profile.reload.first_name }.to('Walt')
-      end
+    def send_request
+      set_http_headers(user)
 
-      def send_request
-        set_http_headers(user)
-
-        put :update, params: { user_id: user.id, name: 'Walt' }
-      end
+      put :update, params: { user_id: user.id, name: 'Walt' }
     end
   end
 end
