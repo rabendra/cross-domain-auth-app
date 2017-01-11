@@ -9,5 +9,11 @@ FactoryGirl.define do
         build(:business_profile, user: user)
       end
     end
+
+    trait :personal do
+      after :build do |user, evaluator|
+        build(:personal_profile, user: user)
+      end
+    end
   end
 end

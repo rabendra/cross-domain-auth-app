@@ -20,6 +20,8 @@ Rails.application.routes.draw do
         end
       end
 
+      resource :personal_profile, path: :profile, only: :update
+
       resource :avatar, only: :update
     end
   end
