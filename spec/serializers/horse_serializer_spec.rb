@@ -7,5 +7,6 @@ RSpec.describe HorseSerializer, type: :serializer do
   it { is_expected.to include(name: resource.name) }
   it { is_expected.to include(age: resource.age) }
   it { is_expected.to include(breed: resource.breed) }
+  it { is_expected.to include(photo: resource.photo.url) }
   it { is_expected.to include(competition_type: resource.competition_type) }
 end

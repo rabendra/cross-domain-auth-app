@@ -63,4 +63,28 @@ RSpec.describe API::HorsesController, type: :controller do
       get :index
     end
   end
+
+  describe 'GET show' do
+    let!(:horse) { create(:horse, user: user) }
+    let(:json) { JSON.parse(response.body).with_indifferent_access }
+
+    it 'responds with 200' do
+      send_request
+
+      expect(response.code).to eq('200')
+    end
+
+    it 'responds with horse JSON' do
+      send_request
+
+      attributes = attributes_from(HorseSerializer.new(horse))
+      expect(attributes).to eq(json)
+    end
+
+    def send_request
+      set_http_headers(user)
+
+      get :show, params: { id: horse.id }
+    end
+  end
 end

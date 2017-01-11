@@ -3,7 +3,7 @@ class HorseUploader < CarrierWave::Uploader::Base
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
-    ActionController::Base.helpers.asset_path("fallback/" + [model.class.to_s.underscore, "default.png"].compact.join('_'))
+    File.join(ActionDispatch::Http::URL.url_for(ActionMailer::Base.default_url_options), ActionController::Base.helpers.image_url("fallback/" + [model.class.to_s.underscore, "default.png"].compact.join('_')))
   end
 
   # Override the directory where uploaded files will be stored.
