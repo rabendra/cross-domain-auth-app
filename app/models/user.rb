@@ -18,6 +18,12 @@ class User < ApplicationRecord
     profile.try(:name)
   end
 
+  def format_phone_number
+    if self.phone_number
+      self.phone_number = self.phone_number.gsub(/[^0-9]/, '')
+    end
+  end
+
   def token_payload
     {
         user_id: id,
