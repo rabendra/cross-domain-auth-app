@@ -14,6 +14,10 @@ RSpec.describe API::PersonalProfilesController, type: :controller do
         expect(response.code).to eq('200')
       end
 
+      it 'creates a profile' do
+        expect { send_request }.to change { user.reload.profile }.from(nil).to(kind_of(PersonalProfile))
+      end
+
       it 'renders the profile JSON' do
         send_request
 
