@@ -1,6 +1,7 @@
 FactoryGirl.define do
   factory :profile do
     user
+    association(:address, strategy: :build)
     birth_date { 18.years.ago }
   end
 
