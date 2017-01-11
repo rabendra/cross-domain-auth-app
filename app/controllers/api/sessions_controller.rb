@@ -1,3 +1,4 @@
+
 module API
   class SessionsController < Devise::SessionsController
     include ErrorHandling

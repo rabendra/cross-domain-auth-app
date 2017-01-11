@@ -9,6 +9,10 @@ class User < ApplicationRecord
 
   attr_accessor :user_token
 
+
+=======
+  
+
   # Override to send all email notifications via ActiveJob
   def send_devise_notification(notification, *args)
    devise_mailer.send(notification, self, *args).deliver_later
