@@ -1,5 +1,6 @@
 module API
   UnprocessableEntityError = Class.new(StandardError)
+  AuthenticationRequired = Class.new(StandardError)
 
   module ErrorHandling
     extend ActiveSupport::Concern
@@ -15,6 +16,10 @@ module API
 
       rescue_from UnprocessableEntityError do |e|
         render json: e, serializer: ExceptionSerializer, status: :unprocessable_entity
+      end
+
+      rescue_from AuthenticationRequired do |e|
+        render json: e, serializer: ExceptionSerializer, status: :unauthorized
       end
     end
   end
