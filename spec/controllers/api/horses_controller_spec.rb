@@ -87,4 +87,21 @@ RSpec.describe API::HorsesController, type: :controller do
       get :show, params: { id: horse.id }
     end
   end
+
+  describe 'DELETE destroy' do
+    let!(:horse) { create(:horse, user: user) }
+    let(:json) { JSON.parse(response.body).with_indifferent_access }
+
+    it 'responds with 204' do
+      send_request
+
+      expect(response.code).to eq('204')
+    end
+
+    def send_request
+      set_http_headers(user)
+
+      delete :destroy, params: { id: horse.id }
+    end
+  end
 end

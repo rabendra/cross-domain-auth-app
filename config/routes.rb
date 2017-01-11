@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     devise_scope :user do
       resources :sessions, only: :create
 
-      resources :horses, only: [:index, :create, :show]
+      resources :horses, except: [:new, :edit]
 
       resource :avatar, only: :update
     end

@@ -17,6 +17,13 @@ module API
       render json: horse, serializer: HorseSerializer
     end
 
+    def destroy
+      horse = current_user.horses.find(params[:id])
+      horse.destroy!
+
+      head :no_content
+    end
+
     private
 
     def horse_params
