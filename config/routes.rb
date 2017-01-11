@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   namespace :api, path: '', defaults: { format: :json } do
     devise_scope :user do
       resources :sessions, only: :create
+
+      resource :avatar, only: :update
     end
   end
 
