@@ -14,8 +14,12 @@ else
 
     config.storage = :fog
     config.fog_public = true
-    config.asset_host = ENV['CLOUDFRONT_UPLOADS_HOST']
     config.fog_directory = ENV['S3_UPLOADS_BUCKET']
   end
 
+end
+
+# Shared no matter the ENV
+CarrierWave.configure do |config|
+  config.asset_host = ENV['CLOUDFRONT_UPLOADS_HOST']
 end
