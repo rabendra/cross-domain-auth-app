@@ -12,6 +12,7 @@ module API
           render json: user, serializer: RegistrationSerializer
         else
             raise UnprocessableEntityError, 'Invalid sign up'
+          #TODO get validation errors from devise
         end
     end
 
@@ -19,6 +20,7 @@ module API
 
     def sign_up_params
       params.permit(:email, :password, :phone_number)
+      #TODO are we handling password_confirmation? are we formatting phone number
     end
 
   end
