@@ -14,6 +14,8 @@ FactoryGirl.define do
   factory :personal_profile, parent: :profile, class: PersonalProfile.name do
     sequence(:first_name) { |n| "User #{ n }" }
 
+    last_name 'Appleseed'
+    bio 'Lorem ipsum'
     profile_type 'rider'
   end
 end
