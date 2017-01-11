@@ -4,4 +4,6 @@ class API::BaseController < ApplicationController
   include API::Authorization
 
   respond_to :json
+
+
 end

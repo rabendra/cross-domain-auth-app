@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       resources :sessions, only: :create
 
       # Registration
-      # TODO: Build out
+      resources :registrations, only: :create
 
       # Horses
       resources :horses, except: [:new, :edit] do
