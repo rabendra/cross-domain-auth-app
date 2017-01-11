@@ -14,7 +14,11 @@ Rails.application.routes.draw do
     devise_scope :user do
       resources :sessions, only: :create
 
-      resources :horses, except: [:new, :edit]
+      resources :horses, except: [:new, :edit] do
+        namespace :horses, path: '' do
+          resource :photo, path: :photo, only: :update
+        end
+      end
 
       resource :avatar, only: :update
     end
