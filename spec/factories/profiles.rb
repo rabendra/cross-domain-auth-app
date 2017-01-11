@@ -1,13 +1,13 @@
 FactoryGirl.define do
   factory :profile do
-    user nil
+    user
     birth_date { 18.years.ago }
   end
 
   factory :business_profile, parent: :profile, class: BusinessProfile.name do
     sequence(:first_name) { |n| "Business #{ n }" }
 
-    profile 'reseller'
+    profile_type 'reseller'
   end
 
   factory :personal_profile, parent: :profile, class: PersonalProfile.name do
