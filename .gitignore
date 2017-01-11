@@ -28,3 +28,6 @@ spec/examples.txt
 
 # ENV
 .env
+
+# carrierwave
+public/uploads
