@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end if Rails.env.production?
   mount Sidekiq::Web => '/sidekiq'
 
-  namespace :api do
+  namespace :api, path: '' do
     devise_scope :user do
       resources :sessions, only: :create
     end
