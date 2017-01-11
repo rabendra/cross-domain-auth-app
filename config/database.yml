@@ -1,34 +1,15 @@
-# default: &default
-#   adapter: postgresql
-#   encoding: unicode
-#   pool: 5
-
-# development:
-#   <<: *default
-#   database: equus_hub_development
-
-# test:
-#   <<: *default
-#   database: equus_hub_test
-
-# production:
-#   password: <%= ENV['DATABASE_URL'] %>
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
 
 development:
-  adapter: postgresql
-  encoding: utf-8
+  <<: *default
   database: equus_hub_development
-  pool: 5
-  username: postgres
-  password: 12345678
-  host: localhost
-  port: 5432
+
+test:
+  <<: *default
+  database: equus_hub_test
+
 production:
-  adapter: postgresql
-  encoding: utf-8
-  database: equus_hub_production
-  pool: 5
-  username: postgres
-  password: 12345678
-  host: localhost
-  port: 5432
+  password: <%= ENV['DATABASE_URL'] %>
