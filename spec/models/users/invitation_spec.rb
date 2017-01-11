@@ -21,4 +21,17 @@ RSpec.describe Users::Invitation, type: :model do
       it { is_expected.to eq(invitation.email) }
     end
   end
+
+  describe 'uniqueness' do
+    let(:user) { create(:user) }
+    subject { build(:users_invitation, requestor: user, email: user.email) }
+
+    it { is_expected.not_to be_valid }
+
+    it 'has an error on the email attribute' do
+      subject.valid?
+
+      expect(subject.errors[:email]).to include('This user already exists in the system')
+    end
+  end
 end
