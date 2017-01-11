@@ -1,6 +1,4 @@
 class Api::HorsesController < Api::BaseController
-  before_action :authenticate_request!
-  respond_to :json
   def create
     begin
       horse = @current_user.horses.create(horse_params)

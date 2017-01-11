@@ -1,4 +1,9 @@
 class Api::BaseController < ApplicationController
+
+  protect_from_forgery unless: -> { request.format.json? }
+  before_action :authenticate_request!
+  respond_to :json
+
   protected
 
     def authenticate_request!
@@ -8,7 +13,7 @@ class Api::BaseController < ApplicationController
 
     def authenticate_user_from_jwt 
       begin          
-        token = params['authorization']
+        token = request.headers['authorization']
         decoded_token = AuthenticationToken.decode(token)
         User.find_by( id: decoded_token[:user_id])
       rescue Exception => e
