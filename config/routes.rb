@@ -17,6 +17,8 @@ Rails.application.routes.draw do
       post '/authentication' => 'registrations#authentication', as: :user_authentication    
     end
     resources :horses 
+    resources :listings
+    resources :categories
   end
   # TODO: Remove once we have some routing in place
   root to: 'home#index'
