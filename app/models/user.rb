@@ -14,6 +14,10 @@ class User < ApplicationRecord
    devise_mailer.send(notification, self, *args).deliver_later
   end
 
+  def name
+    profile.try(:name)
+  end
+
   def token_payload
     {
         user_id: id,
