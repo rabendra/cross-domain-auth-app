@@ -1,5 +1,6 @@
-class BaseProfileSerializer  < ActiveModel::Serializer
+class BaseProfileSerializer < ActiveModel::Serializer
   attributes :id, :email, :bio, :birth_date, :profile_type, :avatar
+  has_one :address, serializer: AddressSerializer
 
   delegate :id, :email, to: :user
 
