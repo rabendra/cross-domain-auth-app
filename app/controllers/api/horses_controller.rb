@@ -12,12 +12,26 @@ module API
     end
 
     def show
-      horse = current_user.horses.find(params[:id])
+      render json: horse, serializer: HorseSerializer
+    end
+
+    def update
+      horse.update!(horse_params)
 
       render json: horse, serializer: HorseSerializer
     end
 
+    def destroy
+      horse.destroy!
+
+      head :no_content
+    end
+
     private
+
+    def horse
+      @horse ||= current_user.horses.find(params[:id])
+    end
 
     def horse_params
       params.permit(:name, :age, :breed, :competition_type)
