@@ -30,9 +30,6 @@ gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 
-# API Builder
-gem 'jbuilder', '~> 2.5'
-
 # API Functionality
 gem 'jwt', '~> 1.5.2'
 gem 'active_model_serializers'
