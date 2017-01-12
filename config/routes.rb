@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       resources :sessions, only: :create
 
       # Registration
-      # TODO: Build out
+      resources :registrations, only: [ :create, :authenticate ]
 
       # Horses
       resources :horses, except: [:new, :edit] do
@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       resource :personal_profile, path: :profile, only: :update
       resource :business_profile, path: :business, only: :update
       resource :avatar, only: :update
+      resources :contacts, only: :create
     end
   end
 
