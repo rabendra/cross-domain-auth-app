@@ -8,8 +8,8 @@ module API
 
       if user && user.valid_password?(sign_in_params[:password])
         user.user_token = AuthenticationToken.encode(user.token_payload)
-        
-        render json: user, serializer: UserSerializer
+
+        render json: user, serializer: LoginSerializer
       else
         raise UnprocessableEntityError, 'Invalid username or password'
       end
