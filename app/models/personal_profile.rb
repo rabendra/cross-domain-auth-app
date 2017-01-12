@@ -6,4 +6,8 @@ class PersonalProfile < Profile
   def name
     [ first_name, last_name ].join(' ')
   end
+
+  def serializer_class
+    PersonalProfileSerializer
+  end
 end

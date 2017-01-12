@@ -7,4 +7,8 @@ class Profile < ApplicationRecord
   mount_uploader :avatar, ProfileUploader
 
   validates :first_name, presence: true
+
+  def serializer_class
+    raise 'Implement in each subclass'
+  end
 end

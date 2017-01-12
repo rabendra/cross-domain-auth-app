@@ -6,7 +6,7 @@ module API
     def create
         user = User.create!(sign_up_params)
         user.user_token = AuthenticationToken.encode(user.token_payload)
-        render json: user, serializer: RegistrationSerializer
+        render json: user, serializer: LoginSerializer
     end
 
   private

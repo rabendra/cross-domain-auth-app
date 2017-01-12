@@ -6,4 +6,8 @@ class BusinessProfile < Profile
   def name
     first_name
   end
+
+  def serializer_class
+    BusinessProfileSerializer
+  end
 end
