@@ -3,34 +3,20 @@ class API::ListingsController < Api::BaseController
   before_action :get_category
 
   def create
-    listing = @current_user.listings.new(listing_params)
-    listing.tag_list = params[:tags] if !params[:tags].blank?    
-    listing.categories_listings.new( category_id: get_category.id )      
-    if listing.save
-      retrun_listing_response listing
+    listing = @current_user.listings.new(item_name: params[:item_name], location: params[:location], description: params[:description], price: params[:price])
+    listing.tag_list = params[:tags] if !params[:tags].blank?  
+    if !get_category.nil? 
+      listing.categories_listings.new( category_id: get_category.id )      
+      if listing.save
+        retrun_listing_response listing
+      end
     else
-      return_error listing.errors.messages
+      raise ActiveRecord::RecordNotFound
     end
-  end
-
-  def listing_params
-    params
-      .require(:listing)
-      .permit(
-        :item_name,
-        :location,
-        :description,
-        :price
-      )
   end
 
   def retrun_listing_response(listing)
     render json: listing, serializer: ListingSerializer, status: :ok    
-  end
-
-  def return_error(errors)
-    render json: { errors: errors }, status: :bad_request
-    return
   end
 
   def get_category
