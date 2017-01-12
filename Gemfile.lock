@@ -1,3 +1,13 @@
+PATH
+  remote: config/gems/devise-ios-rails
+  specs:
+    devise-ios-rails (1.0.2)
+      active_model_serializers (~> 0.9)
+      devise (>= 3.4, <= 4.2)
+      koala (>= 1.11.1, < 2.4)
+      rails (>= 4.0.0, < 5.1)
+      simple_token_authentication (~> 1.7)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -87,6 +97,8 @@ GEM
     factory_girl_rails (4.8.0)
       factory_girl (~> 4.8.0)
       railties (>= 3.0.0)
+    faraday (0.10.1)
+      multipart-post (>= 1.2, < 3)
     ffi (1.9.14)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
@@ -240,6 +252,10 @@ GEM
     jsonapi-parser (0.1.1.beta3)
     jsonapi-renderer (0.1.1.beta1)
     jwt (1.5.6)
+    koala (2.3.0)
+      addressable
+      faraday
+      multi_json
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
@@ -255,6 +271,7 @@ GEM
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     multi_json (1.12.1)
+    multipart-post (2.0.0)
     newrelic_rpm (3.17.2.327)
     nio4r (1.2.1)
     nokogiri (1.7.0.1)
@@ -342,6 +359,10 @@ GEM
       rufus-scheduler (~> 3.1.8)
       sidekiq (>= 3)
       tilt (>= 1.4.0)
+    simple_token_authentication (1.14.0)
+      actionmailer (>= 3.2.6, < 6)
+      actionpack (>= 3.2.6, < 6)
+      devise (>= 3.2, < 6)
     spring (2.0.0)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -391,6 +412,7 @@ DEPENDENCIES
   carrierwave (~> 1.0)
   coffee-rails (~> 4.2)
   devise (~> 4.2)
+  devise-ios-rails!
   dotenv-rails (~> 2.1)
   factory_girl_rails (~> 4.7)
   fog (~> 1.38)

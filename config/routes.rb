@@ -17,7 +17,8 @@ Rails.application.routes.draw do
       resources :sessions, only: :create
 
       # Registration
-      resources :registrations, only: [ :create, :authenticate ]
+      resources :registrations, only: :create
+      post 'auth/facebook', to: 'devise_ios_rails/oauth#facebook'
 
       # Horses
       resources :horses, except: [:new, :edit] do
