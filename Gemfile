@@ -10,6 +10,9 @@ gem 'puma', '~> 3.0'
 # Authentication and access control
 gem 'devise', '~> 4.2'
 
+# Payments
+gem 'stripe', '~> 1.57'
+
 # Background processing
 gem 'sidekiq', '~> 4.2'
 gem 'sidekiq-scheduler', '~> 2.0'
