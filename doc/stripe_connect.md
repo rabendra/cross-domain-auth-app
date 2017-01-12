@@ -4,7 +4,7 @@ We'll be utilizing [Stripe Connect](https://stripe.com/docs/connect) to collect 
 
 ## Overview
 
-A user (stripe customer) will purchase a listing (stripe transaction) using their credit card (stripe payment method) from the seller (stripe managed account).
+A user (stripe customer) will purchase a listing (stripe charge) using their credit card (stripe payment method) from the seller (stripe managed account).
 
 ## Stripe Customers
 When a user adds a payment method, we'll need to create the customer at the same time.  Any user with a payment method on file, whether they have made a purchase or not, will exist in Stripe.
@@ -15,7 +15,7 @@ When a user adds a payment method, we'll need to create the customer at the same
 When a user (seller) posts a listing, we'll need to setup a Managed Connect Account.  This will include creating the account that includes all required verification information from the onset, and accepting Strips ToS on behalf of the seller - all via the Stripe API.
 
 More about account verification [can be read here](https://stripe.com/docs/connect/identity-verification).
-Required minimum fields [for creating managed account](https://stripe.com/docs/connect/required-verification-information#minimum-verification-requirements-for-united-states), although we will skip collecting the last 4 of the user's social for now.
+Required minimum fields [for creating managed account](https://stripe.com/docs/connect/required-verification-information#minimum-verification-requirements-for-united-states) can be reviewed, but are listed below.
 
 Example request [can be found here](https://stripe.com/docs/connect/testing-verification#creating-a-managed-account).
 
@@ -26,7 +26,6 @@ Example request [can be found here](https://stripe.com/docs/connect/testing-veri
 * Date of birth
 * Last 4 of SSN (for individual, or for the person authorized to setup the business)
 * Routing and Account number to US based bank account
-
 
 ## Processing a Transaction
 
