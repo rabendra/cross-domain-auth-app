@@ -1,3 +1,4 @@
+
 class UserSerializer < ActiveModel::Serializer
   attributes  :id,
               :email
@@ -6,5 +7,6 @@ class UserSerializer < ActiveModel::Serializer
 
   def user_token?
     object.user_token.present?
+
   end
 end

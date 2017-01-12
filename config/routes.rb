@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   end if Rails.env.production?
   mount Sidekiq::Web => '/sidekiq'
 
+
   namespace :api, path: '', defaults: { format: :json } do
     devise_scope :user do
 
