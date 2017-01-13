@@ -24,7 +24,7 @@ RSpec.describe API::RegistrationsController, type: :controller do
       send_request
 
       json = JSON.parse(response.body).with_indifferent_access
-      expect(json).to include(user_token: kind_of(String))
+      expect(json).to include(api_key: kind_of(String))
     end
 
     def send_request

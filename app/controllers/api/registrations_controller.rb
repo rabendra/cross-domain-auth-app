@@ -5,9 +5,9 @@ module API
 
     #CREATE WITH EMAIL
     def create
-      user = User.create!(sign_up_params)
-      user.user_token = AuthenticationToken.encode(user.token_payload)
-      render json: user, serializer: RegistrationSerializer
+        user = User.create!(sign_up_params)
+        user.user_token = AuthenticationToken.encode(user.token_payload)
+        render json: user, serializer: LoginSerializer
     end
 
     #CREATE/LOGIN WITH FACEBOOOK
@@ -36,7 +36,7 @@ module API
     def encode_and_return_token_json(user)
       user.user_token = AuthenticationToken.encode(user.token_payload)
 
-      render json: user, serializer: RegistrationSerializer
+      render json: user, serializer: LoginSerializer
     end
 
     def sign_up_params

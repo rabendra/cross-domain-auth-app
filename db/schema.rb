@@ -39,9 +39,9 @@ ActiveRecord::Schema.define(version: 20170113030327) do
     t.string   "photo"
     t.integer  "age"
     t.integer  "competition_type", default: 0
-    t.integer  "breed",            default: 0
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.string   "breed"
     t.index ["user_id"], name: "index_horses_on_user_id", using: :btree
   end
 
@@ -51,11 +51,14 @@ ActiveRecord::Schema.define(version: 20170113030327) do
     t.string   "last_name"
     t.date     "birth_date"
     t.text     "bio"
-    t.integer  "profile_type", default: 0, null: false
+    t.integer  "profile_type",                      default: 0, null: false
     t.string   "type"
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
     t.string   "avatar"
+    t.string   "last_4_ssn"
+    t.string   "stripe_managed_account_identifier"
+    t.string   "stripe_customer_identifier"
     t.index ["profile_type"], name: "index_profiles_on_profile_type", using: :btree
     t.index ["type"], name: "index_profiles_on_type", using: :btree
     t.index ["user_id"], name: "index_profiles_on_user_id", using: :btree
@@ -64,7 +67,7 @@ ActiveRecord::Schema.define(version: 20170113030327) do
   create_table "users", force: :cascade do |t|
     t.string   "phone_number"
     t.boolean  "phone_number_verified",  default: false
-    t.string   "email",                  default: ""
+    t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"

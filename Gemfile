@@ -10,6 +10,9 @@ gem 'puma', '~> 3.0'
 # Authentication and access control
 gem 'devise', '~> 4.2'
 
+# Payments
+gem 'stripe', '~> 1.57'
+
 # Background processing
 gem 'sidekiq', '~> 4.2'
 gem 'sidekiq-scheduler', '~> 2.0'
@@ -29,9 +32,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
-
-# API Builder
-gem 'jbuilder', '~> 2.5'
 
 # API Functionality
 gem 'jwt', '~> 1.5.2'
