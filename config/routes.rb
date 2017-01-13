@@ -20,7 +20,6 @@ Rails.application.routes.draw do
       resources :registrations, only: :create
       post 'authenticate' => 'registrations#authenticate'
 
-
       # Horses
       resources :horses, except: [:new, :edit] do
         namespace :horses, path: '' do
