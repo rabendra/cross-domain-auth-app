@@ -19,7 +19,8 @@ gem 'sidekiq-scheduler', '~> 2.0'
 
 # Monitoring
 gem 'newrelic_rpm', '~> 3.17.2'
-
+gem 'jwt', '~> 1.5.2'
+gem 'active_model_serializers'
 # Geocoding & uploads
 gem 'geocoder', '~> 1.4'
 gem 'carrierwave', '~> 1.0'
