@@ -10,6 +10,11 @@ Rails.application.routes.draw do
   end if Rails.env.production?
   mount Sidekiq::Web => '/sidekiq'
 
+  # devise_scope :user do
+  #   post 'auth/facebook', to: 'devise_ios_rails/oauth#facebook'
+  # end
+
+
   namespace :api, path: '', defaults: { format: :json } do
     devise_scope :user do
 
@@ -18,7 +23,8 @@ Rails.application.routes.draw do
 
       # Registration
       resources :registrations, only: :create
-      post 'auth/facebook', to: 'devise_ios_rails/oauth#facebook'
+      post 'authenticate' => 'registrations#authenticate'
+
 
       # Horses
       resources :horses, except: [:new, :edit] do
@@ -34,7 +40,4 @@ Rails.application.routes.draw do
       resources :contacts, only: :create
     end
   end
-
-  # TODO: Remove once we have some routing in place
-  root to: 'home#index'
 end

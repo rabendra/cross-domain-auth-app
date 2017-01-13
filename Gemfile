@@ -36,9 +36,9 @@ gem 'jbuilder', '~> 2.5'
 # API Functionality
 gem 'jwt', '~> 1.5.2'
 gem 'active_model_serializers'
-gem 'devise-ios-rails', path: 'config/gems/devise-ios-rails'
 
 #Facebook Authentication
+gem 'koala', '~> 2.4'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
