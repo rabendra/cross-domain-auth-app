@@ -17,8 +17,8 @@ RSpec.describe API::AvatarsController, type: :controller do
     VCR.use_cassette 'cognito/cat' do
       put :update, params: { resource_key: 'cat.jpg' }
     end
-    
-    attributes = attributes_from(UserSerializer.new(user))
+
+    attributes = attributes_from(BusinessProfileSerializer.new(user.profile.reload))
     json = JSON.parse(response.body).with_indifferent_access
 
     expect(json).to eq(attributes)

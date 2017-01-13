@@ -2,9 +2,15 @@ module API
   class AvatarsController < BaseController
     def update
       Users::SetRemoteAvatar.perform(current_user, params[:resource_key])
-      current_user.profile.save!
+      profile.save!
 
-      render json: current_user, serializer: UserSerializer
+      render json: profile, serializer: profile.serializer_class
+    end
+
+    private
+
+    def profile
+      @profile ||= current_user.profile
     end
   end
 end

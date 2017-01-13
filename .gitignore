@@ -30,5 +30,8 @@ spec/examples.txt
 # ENV
 .env
 
+#Authentication
+facebook.yml
+
 # carrierwave
 public/uploads

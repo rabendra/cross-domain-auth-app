@@ -20,8 +20,8 @@ RSpec.describe API::SessionsController, type: :controller do
       end
 
       it 'renders JSON using the serializer' do
-        attributes = attributes_from(UserSerializer.new(user)).except(:user_token)
-        json = JSON.parse(response.body).with_indifferent_access.except(:user_token)
+        attributes = attributes_from(LoginSerializer.new(user)).except(:api_key)
+        json = JSON.parse(response.body).with_indifferent_access.except(:api_key)
 
         expect(json).to eq(attributes)
       end

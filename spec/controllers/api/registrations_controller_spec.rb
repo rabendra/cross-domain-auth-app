@@ -24,7 +24,9 @@ RSpec.describe API::RegistrationsController, type: :controller do
       send_request
 
       json = JSON.parse(response.body).with_indifferent_access
-      expect(json).to include(user_token: kind_of(String))
+
+      expect(json).to include(api_key: kind_of(String))
+
     end
 
     def send_request
@@ -32,32 +34,46 @@ RSpec.describe API::RegistrationsController, type: :controller do
     end
   end
 
+
+
   describe 'POST authenticate' do
-    it 'responds with 200'
-    send_facebook_request
 
-    expect(response.code).to eq('200')
-  end
-  #
-  # it 'creates a User from authentication token' do
-  #
-  # end
-  #
-  # it 'responds with user_token' do
-  #
-  # end
-  #
-  def send_facebook_request
-    authentication_token = 'EAAKWWLvpFCUBAJrvURL4Kdscm6xeQla6DI4EhM8LWUpnttQTySz2vq3DfJFZBOlnW5iZBg1swihRRmUowzo7TfMyarDlwVbk2XG2SWpXZBUb4QrbOrBMjUZCDdeirLfKzwbHIzesYm6yS7toApoas5qODlyZCwJ6VilsphKyodZAQmlQtrtsw2fwx0c2NRR6fZCV7e257NClvBjO34IbqiK'
+    it 'responds with 200' do
+      create_test_user
+      send_auth(@user1)
 
-    facebook_params = {
-        provider_id: nil,
-        provider: 'facebook',
-        username: nil,
-        authenitication_token: authentication_token,
-        email: 'fake_email@email.com'
-    }
-    post :authenticate, params: { provider: 'facebook', authentication_token: authentication_token }
+      expect(response.code).to eq('200')
+    end
+
+    it 'creates a User from authentication token' do
+      create_test_user
+      expect { send_auth(@user2) }.to change { User.count }
+    end
+
+    it 'responds with user_token' do
+      create_test_user
+      send_auth(@user2)
+
+      json = JSON.parse(response.body).with_indifferent_access
+      expect(json).to include(user_token: kind_of(String))
+    end
+
+    def create_test_user
+      test_users = Koala::Facebook::TestUsers.new(:app_id => ENV['FACEBOOK_ID'], :secret => ENV['FACEBOOK_SECRET'])
+      @user1 = test_users.create(true)
+      @user2 = test_users.create(true)
+      # @user3 = test_users.create(true)
+    end
+
+    def send_auth(user)
+      params = {}
+              params[:email] = user["email"]
+              params[:provider] = 'facebook'
+              params[:uid] = user["id"]
+              params[:oauth_token] = user["access_token"]
+
+          post :authenticate, params: params
+    end
   end
 
 end
