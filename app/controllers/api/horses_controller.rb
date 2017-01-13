@@ -1,19 +1,41 @@
-class API::HorsesController < Api::BaseController
-  def create
-    params.permit!
-    if !params[:name].blank?
-      horse = @current_user.horses.create!(name: params[:name], age: params[:age], competition_type: params[:competition_type], breed: params[:breed], photo: params[:photo])
-      if horse.valid?
-        retrun_horse_response horse
-      else
-        return_error horse.errors.messages
-      end
-    else
-      raise StandardError
-  end
+module API
+  class HorsesController < BaseController
 
-  def retrun_horse_response(horse)
-    render json: horse, serializer: HorseSerializer, status: :ok    
-  end
+    def index
+      render json: current_user.horses, each_serializer: HorseSerializer
+    end
 
+    def create
+      horse = current_user.horses.create!(horse_params)
+
+      render json: horse, serializer: HorseSerializer, status: :created
+    end
+
+    def show
+      render json: horse, serializer: HorseSerializer
+    end
+
+    def update
+      horse.update!(horse_params)
+
+      render json: horse, serializer: HorseSerializer
+    end
+
+    def destroy
+      horse.destroy!
+
+      head :no_content
+    end
+
+    private
+
+    def horse
+      @horse ||= current_user.horses.find(params[:id])
+    end
+
+    def horse_params
+      params.permit(:name, :age, :breed, :competition_type)
+    end
+  end
 end
+

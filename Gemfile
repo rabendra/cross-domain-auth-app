@@ -37,6 +37,9 @@ gem 'jbuilder', '~> 2.5'
 # API Functionality
 gem 'jwt', '~> 1.5.2'
 gem 'active_model_serializers'
+gem "will_paginate", "~> 3.0.4"
+
+# gem 'devise-ios-rails', path: '/Users/kgd/Desktop/equushub/config/gems/devise-ios-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -10,17 +10,32 @@ class User < ApplicationRecord
   has_one :profile, inverse_of: :user, dependent: :destroy
 
   attr_accessor :user_token
-  
+
+  before_save :format_phone_number
+
   # Override to send all email notifications via ActiveJob
   def send_devise_notification(notification, *args)
    devise_mailer.send(notification, self, *args).deliver_later
   end
 
-   def token_payload
+
+  def name
+    profile.try(:name)
+  end
+
+  def token_payload
     {
       user_id: id,
       email: email,
       username: username
     }
+  end
+
+  private
+
+  def format_phone_number
+    return if phone_number.blank? || !phone_number_changed?
+
+    self.phone_number = phone_number.gsub(/[^0-9]/, '')
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170111123520) do
+ActiveRecord::Schema.define(version: 20170111192647) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,6 +134,18 @@ ActiveRecord::Schema.define(version: 20170111123520) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
 
+  create_table "users_invitations", force: :cascade do |t|
+    t.integer  "requestor_id"
+    t.string   "email",        null: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["email"], name: "index_users_invitations_on_email", using: :btree
+    t.index ["requestor_id"], name: "index_users_invitations_on_requestor_id", using: :btree
+  end
+
   add_foreign_key "horses", "users"
   add_foreign_key "profiles", "users"
+  add_foreign_key "users_invitations", "users", column: "requestor_id"
 end

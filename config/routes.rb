@@ -13,14 +13,35 @@ Rails.application.routes.draw do
 
   namespace :api, path: '', defaults: { format: :json } do
     devise_scope :user do
-      resources :sessions, only: :create 
+
+      # Login
+      resources :sessions, only: :create
+
+      # Registration
       resources :registrations, only: :create
+      post 'authenticate' => 'registrations#authenticate'
+
+      # Horses
+      resources :horses, except: [:new, :edit] do
+        namespace :horses, path: '' do
+          resource :photo, path: :photo, only: :update
+        end
+      end
+
+      # Profile Management
+      resource :personal_profile, path: :profile, only: :update
+      resource :business_profile, path: :business, only: :update
       resource :avatar, only: :update
-      post 'authentication' => 'registrations#authentication' 
+      resources :contacts, only: :create
     end
     resources :horses, only: :create  
-    resources :listings, only: :create 
-    resources :categories, only: :create 
+    resources :listings, only: [:create, :show, :index] do
+      get 'search', on: :collection
+      get 'meta', on: :collection
+    end
+    #get 'listings/search' => 'listings#search'
+
+    resources :categories, only: [:create, :index] 
   end
 
   # TODO: Remove once we have some routing in place
