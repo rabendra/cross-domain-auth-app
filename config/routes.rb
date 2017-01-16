@@ -32,6 +32,8 @@ Rails.application.routes.draw do
         get 'meta', on: :collection
       end
 
+      resources :categories, only: [:create, :index]
+
       # Profile Management
       resource :personal_profile, path: :profile, only: :update
       resource :business_profile, path: :business, only: :update
