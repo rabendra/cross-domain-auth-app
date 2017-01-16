@@ -12,7 +12,7 @@ gem 'devise', '~> 4.2'
 
 # Lisings, Categories, Tags association
 gem 'acts-as-taggable-on', '~> 4.0'
-gem 'will_paginate", "~> 3.0.4'
+gem 'will_paginate', '~> 3.0.4'
 
 # Payments
 gem 'stripe', '~> 1.57'
