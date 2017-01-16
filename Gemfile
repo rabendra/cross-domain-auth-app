@@ -10,6 +10,9 @@ gem 'puma', '~> 3.0'
 # Authentication and access control
 gem 'devise', '~> 4.2'
 
+# Lisings, Categories, Tags association
+gem 'acts-as-taggable-on', '~> 4.0'
+
 # Payments
 gem 'stripe', '~> 1.57'
 

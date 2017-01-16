@@ -26,6 +26,12 @@ Rails.application.routes.draw do
         end
       end
 
+      resources :horses, only: :create
+      resources :listings, only: [:create, :show, :index] do
+        get 'search', on: :collection
+        get 'meta', on: :collection
+      end
+
       # Profile Management
       resource :personal_profile, path: :profile, only: :update
       resource :business_profile, path: :business, only: :update
@@ -34,6 +40,4 @@ Rails.application.routes.draw do
     end
   end
 
-  # TODO: Remove once we have some routing in place
-  root to: 'home#index'
 end
