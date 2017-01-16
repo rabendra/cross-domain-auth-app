@@ -1,3 +1,4 @@
+
 class API::BaseController < ApplicationController
   include API::ForgeryProtection
   include API::ErrorHandling

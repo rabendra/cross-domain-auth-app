@@ -23,7 +23,8 @@ gem 'sidekiq-scheduler', '~> 2.0'
 
 # Monitoring
 gem 'newrelic_rpm', '~> 3.17.2'
-
+gem 'jwt', '~> 1.5.2'
+gem 'active_model_serializers'
 # Geocoding & uploads
 gem 'geocoder', '~> 1.4'
 gem 'carrierwave', '~> 1.0'
@@ -40,6 +41,9 @@ gem 'turbolinks', '~> 5'
 # API Functionality
 gem 'jwt', '~> 1.5.2'
 gem 'active_model_serializers'
+
+#Facebook Authentication
+gem 'koala', '~> 2.4'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
