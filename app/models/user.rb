@@ -5,7 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :horses, inverse_of: :user, dependent: :destroy
+  has_many :listings, inverse_of: :user, dependent: :destroy
+  has_many :categories, inverse_of: :user, dependent: :destroy
   has_one :profile, inverse_of: :user, dependent: :destroy
+
 
   attr_accessor :user_token
 

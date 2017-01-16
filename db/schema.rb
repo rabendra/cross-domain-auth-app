@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170112211329) do
+ActiveRecord::Schema.define(version: 20170116083809) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,20 @@ ActiveRecord::Schema.define(version: 20170112211329) do
     t.index ["latitude", "longitude"], name: "index_addresses_on_latitude_and_longitude", using: :btree
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "categories_listings", force: :cascade do |t|
+    t.integer  "category_id"
+    t.integer  "listing_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "horses", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "name",                         null: false
@@ -43,6 +57,16 @@ ActiveRecord::Schema.define(version: 20170112211329) do
     t.datetime "updated_at",                   null: false
     t.string   "breed"
     t.index ["user_id"], name: "index_horses_on_user_id", using: :btree
+  end
+
+  create_table "listings", force: :cascade do |t|
+    t.string   "item_name"
+    t.string   "location"
+    t.text     "description"
+    t.float    "price"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -67,7 +91,7 @@ ActiveRecord::Schema.define(version: 20170112211329) do
   create_table "users", force: :cascade do |t|
     t.string   "phone_number"
     t.boolean  "phone_number_verified",  default: false
-    t.string   "email",                  default: "",    null: false
+    t.string   "email",                  default: ""
     t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -79,9 +103,18 @@ ActiveRecord::Schema.define(version: 20170112211329) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
+    t.string   "authenitcation_token"
+    t.string   "uid"
+    t.string   "provider"
+    t.string   "oauth_token"
+    t.string   "authentication_token"
+    t.string   "oauth_email"
+    t.index ["authenitcation_token"], name: "index_users_on_authenitcation_token", unique: true, using: :btree
+    t.index ["authentication_token"], name: "index_users_on_authentication_token", unique: true, using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["phone_number"], name: "index_users_on_phone_number", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
   end
 
   create_table "users_invitations", force: :cascade do |t|
