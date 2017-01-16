@@ -31,3 +31,6 @@ spec/examples.txt
 
 # carrierwave
 public/uploads
+
+secrets.yml
+database.yml
