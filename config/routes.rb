@@ -29,7 +29,7 @@ Rails.application.routes.draw do
 
       resources :horses, only: :create
       resources :listings, only: [:create, :show, :index] do
-        get 'search', on: :collection
+        post 'search', on: :collection
         get 'meta', on: :collection
       end
 

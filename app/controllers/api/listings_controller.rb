@@ -48,24 +48,29 @@ module API
       tags = ActsAsTaggableOn::Tag.all
       categories = Category.all
       if tags
-        retrun_meta_response tags, categories
+        retrun_meta_response categories, tags
       else
         raise ActiveRecord::RecordNotFound
       end
     end
 
     def retrun_all_listing_response(listings)
-      render json: listings, each_serializer: ListingSerializer, status: :ok
+      render json: listings, adapter: :json, each_serializer: ListingSerializer, :meta => {
+      page: listings.current_page,
+      total: listings.count
+    }, status: :ok
     end
 
+
     def retrun_listing_response(listing)
-      render json: listing, serializer: ListingSerializer, status: :ok
+      respond_with listing, serializer: ListingSerializer, status: :ok
     end
 
     def retrun_meta_response(*args)
-      render :json => {
-          tags: args[0].as_json(:only => [:id, :name]),
-          categories: args[1].as_json(:only => [:id, :name])
+      render :json => {"total_num_active": Category.all.count+ActsAsTaggableOn::Tag.all.count,
+          "total_num_active_categories": Category.all.count, "total_num_active_tags": ActsAsTaggableOn::Tag.all.count,
+          categories: args[0].as_json(:only => [:id, :name]),
+          tags: args[1].as_json(:only => [:name]),
       }, status: :ok
     end
 
