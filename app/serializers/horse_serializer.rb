@@ -6,6 +6,7 @@ class HorseSerializer < ActiveModel::Serializer
              :breed,
              :competition_type
 
+
   def photo
     object.photo.url
   end

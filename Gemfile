@@ -9,6 +9,7 @@ gem 'puma', '~> 3.0'
 
 # Authentication and access control
 gem 'devise', '~> 4.2'
+gem 'acts-as-taggable-on', '~> 4.0'
 
 # Lisings, Categories, Tags association
 gem 'acts-as-taggable-on', '~> 4.0'
@@ -41,6 +42,9 @@ gem 'turbolinks', '~> 5'
 # API Functionality
 gem 'jwt', '~> 1.5.2'
 gem 'active_model_serializers'
+gem "will_paginate", "~> 3.0.4"
+
+# gem 'devise-ios-rails', path: '/Users/kgd/Desktop/equushub/config/gems/devise-ios-rails'
 
 #Facebook Authentication
 gem 'koala', '~> 2.4'

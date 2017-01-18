@@ -41,6 +41,14 @@ Rails.application.routes.draw do
       resource :avatar, only: :update
       resources :contacts, only: :create
     end
+    resources :horses, only: :create  
+    resources :listings, only: [:create, :show, :index] do
+      get 'search', on: :collection
+      get 'meta', on: :collection
+    end
+    #get 'listings/search' => 'listings#search'
+
+    resources :categories, only: [:create, :index] 
   end
 
 end

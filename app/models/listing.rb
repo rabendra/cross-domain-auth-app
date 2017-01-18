@@ -4,3 +4,4 @@ class Listing < ApplicationRecord
   has_many :categories_listings
   has_many :categories, :through => :categories_listings  # Edit :needs to be plural same as the has_many relationship
 end
+

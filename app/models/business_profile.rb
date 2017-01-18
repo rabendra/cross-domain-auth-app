@@ -10,4 +10,5 @@ class BusinessProfile < Profile
   def serializer_class
     BusinessProfileSerializer
   end
+
 end

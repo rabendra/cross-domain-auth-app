@@ -10,4 +10,5 @@ class PersonalProfile < Profile
   def serializer_class
     PersonalProfileSerializer
   end
+
 end

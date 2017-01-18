@@ -24,13 +24,16 @@ RSpec.describe API::RegistrationsController, type: :controller do
       send_request
 
       json = JSON.parse(response.body).with_indifferent_access
+
       expect(json).to include(api_key: kind_of(String))
+
     end
 
     def send_request
       post :create, params: @user_attr.slice(:email, :password)
     end
   end
+
 
 
   describe 'POST authenticate' do
@@ -72,4 +75,5 @@ RSpec.describe API::RegistrationsController, type: :controller do
           post :authenticate, params: params
     end
   end
+
 end

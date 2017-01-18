@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 module API
   class CategoriesController < BaseController
     def create
@@ -25,4 +26,5 @@ module API
     end
 
   end
+
 end

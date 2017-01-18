@@ -6,3 +6,4 @@ class CategorySerializer < ActiveModel::Serializer
   end
 
 end
+
