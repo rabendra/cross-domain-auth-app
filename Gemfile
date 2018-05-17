@@ -13,7 +13,6 @@ gem 'devise', '~> 4.2'
 # gem 'newrelic_rpm', '~> 3.17.2'
 gem 'jwt', '~> 1.5.2'
 gem 'active_model_serializers'
-
 # Assets
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
@@ -25,9 +24,6 @@ gem 'turbolinks', '~> 5'
 gem 'jwt', '~> 1.5.2'
 gem 'active_model_serializers'
 gem 'rack-cors'
-
-# gem 'devise-ios-rails', path: '/Users/kgd/Desktop/equushub/config/gems/devise-ios-rails'
-
 #Facebook Authentication
 gem 'koala', '~> 2.4'
 gem 'rest-client'
