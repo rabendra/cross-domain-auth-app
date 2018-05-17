@@ -9,9 +9,9 @@ development:
   password: 12345678
   database: backend_development
 
-# test:
-#   <<: *default
-#   database: test
+test:
+  <<: *default
+  database: test
 
-# production:
-#   password: <%= ENV['DATABASE_URL'] %>
+production:
+  database: <%= ENV['DATABASE_URL'] %>
