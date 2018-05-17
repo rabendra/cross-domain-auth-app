@@ -1,4 +1,0 @@
-en:
-  uploads:
-    url:
-      input: 'http://s3.amazonaws.com/%{bucket_name}/%{resource_key}'
