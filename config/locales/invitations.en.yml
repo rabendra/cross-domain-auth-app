@@ -1,8 +1,0 @@
-en:
-  activerecord:
-    errors:
-      models:
-        users/invitation:
-          attributes:
-            email:
-              already_exists: This user already exists in the system

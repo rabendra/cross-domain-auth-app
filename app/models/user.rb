@@ -4,25 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :horses, inverse_of: :user, dependent: :destroy
-  has_many :listings, inverse_of: :user, dependent: :destroy
-  has_many :categories, inverse_of: :user, dependent: :destroy
-  has_one :profile, inverse_of: :user, dependent: :destroy
-
 
   attr_accessor :user_token
-
-  before_save :format_phone_number
-
-  # Override to send all email notifications via ActiveJob
-  def send_devise_notification(notification, *args)
-   devise_mailer.send(notification, self, *args).deliver_later
-  end
-
-
-  def name
-    profile.try(:name)
-  end
 
   def token_payload
     {
@@ -32,11 +15,16 @@ class User < ApplicationRecord
     }
   end
 
-  private
-
-  def format_phone_number
-    return if phone_number.blank? || !phone_number_changed?
-
-    self.phone_number = phone_number.gsub(/[^0-9]/, '')
+  def self.user_create_by_provider(*args)
+    case args[0]
+    when 'facebook'
+      fb_user = FacebookApi.find_user(args[1])
+      user = User.create!(provider: args[0], provider_id: fb_user["id"], username: fb_user["name"], authentication_token: args[1], password: Devise.friendly_token[0,20], image_url: args[2], email: (args[3] || "test@mail.com"))
+    when 'google'
+      google_user = GoogleApi.find_user(args[1])
+      user = User.create!(provider: args[0], provider_id: google_user["id"], email:  google_user["emails"][0]["value"], username: google_user["displayName"], image_url: google_user["image"]["url"], authentication_token: args[1], password: Devise.friendly_token[0,20] )
+    end
+    return user
   end
+
 end

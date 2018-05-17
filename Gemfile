@@ -9,28 +9,10 @@ gem 'puma', '~> 3.0'
 
 # Authentication and access control
 gem 'devise', '~> 4.2'
-gem 'acts-as-taggable-on', '~> 4.0'
-
-# Lisings, Categories, Tags association
-gem 'acts-as-taggable-on', '~> 4.0'
-gem 'will_paginate', '~> 3.0.4'
-
-# Payments
-gem 'stripe', '~> 1.57'
-
-# Background processing
-gem 'sidekiq', '~> 4.2'
-gem 'sidekiq-scheduler', '~> 2.0'
-
 # Monitoring
-gem 'newrelic_rpm', '~> 3.17.2'
+# gem 'newrelic_rpm', '~> 3.17.2'
 gem 'jwt', '~> 1.5.2'
 gem 'active_model_serializers'
-# Geocoding & uploads
-gem 'geocoder', '~> 1.4'
-gem 'carrierwave', '~> 1.0'
-gem 'fog', '~> 1.38'
-gem 'mini_magick', '~> 4.6'
 
 # Assets
 gem 'sass-rails', '~> 5.0'
@@ -42,12 +24,13 @@ gem 'turbolinks', '~> 5'
 # API Functionality
 gem 'jwt', '~> 1.5.2'
 gem 'active_model_serializers'
-gem "will_paginate", "~> 3.0.4"
+gem 'rack-cors'
 
 # gem 'devise-ios-rails', path: '/Users/kgd/Desktop/equushub/config/gems/devise-ios-rails'
 
 #Facebook Authentication
 gem 'koala', '~> 2.4'
+gem 'rest-client'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

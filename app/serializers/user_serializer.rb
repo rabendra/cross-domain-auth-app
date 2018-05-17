@@ -1,7 +1,12 @@
 
 class UserSerializer < ActiveModel::Serializer
   attributes  :id,
-              :email
+              :email,
+              :username,
+              :created_at,
+              :updated_at,
+              :image_url,
+              :provider
 
   attribute :user_token, if: :user_token?
 

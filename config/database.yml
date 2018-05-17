@@ -5,11 +5,13 @@ default: &default
 
 development:
   <<: *default
-  database: equus_hub_development
+  username: postgres
+  password: 12345678
+  database: backend_development
 
-test:
-  <<: *default
-  database: equus_hub_test
+# test:
+#   <<: *default
+#   database: test
 
-production:
-  password: <%= ENV['DATABASE_URL'] %>
+# production:
+#   password: <%= ENV['DATABASE_URL'] %>
