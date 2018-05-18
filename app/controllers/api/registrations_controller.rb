@@ -7,8 +7,7 @@ module API
     def create
         user = User.create!(sign_up_params)
         user.user_token = AuthenticationToken.encode(user.token_payload)
-        #render json: user, serializer: LoginSerializer
-        render json: {id: user.id, accessToken: user.user_token, created_at: user.created_at, updated_at: user.updated_at, username: user.username, email: user.email}
+        render json: user, serializer: LoginSerializer
     end
 
     #CREATE/LOGIN WITH FACEBOOOK
@@ -33,15 +32,12 @@ module API
     def encode_and_return_token_json(user)
       user.user_token = AuthenticationToken.encode(user.token_payload)
       puts "#{user.inspect}"
-      render json: {id: user.id, accessToken: user.user_token, created_at: user.created_at, updated_at: user.updated_at, username: user.username, , email: user.email}
+      render json: user, serializer: LoginSerializer
     end
 
     def sign_up_params
       params.require(:user).permit(:email, :password, :username)
     end
 
-    # def resource_params
-    #   params.permit(:email, :provider, :uid, :oauthAccessToken)
-    # end
   end
 end
